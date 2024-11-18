@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/ZTanvir/bookworm-inventory-application/issues"
   },
-  "homepage": "https://github.com/ZTanvir/bookworm-inventory-application#readme"
+  "homepage": "https://github.com/ZTanvir/bookworm-inventory-application#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
 }
