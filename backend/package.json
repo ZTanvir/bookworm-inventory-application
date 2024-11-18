@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend express js app for bookworm inventory application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZTanvir/bookworm-inventory-application.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "express",
+    "postgresql"
+  ],
+  "author": "Zahirul",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZTanvir/bookworm-inventory-application/issues"
+  },
+  "homepage": "https://github.com/ZTanvir/bookworm-inventory-application#readme"
+}
