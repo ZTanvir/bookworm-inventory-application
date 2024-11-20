@@ -1,5 +1,6 @@
 require("dotenv").config();
 
-PORT = process.env.PORT;
+const PORT = process.env.PORT;
+const dbConnectionInfo = process.env.PG_CONNECTION_STRING;
 
-module.exports = { PORT };
+module.exports = { PORT, dbConnectionInfo };
