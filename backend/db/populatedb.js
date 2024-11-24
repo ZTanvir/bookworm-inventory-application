@@ -1,8 +1,14 @@
 const config = require("../utils/config");
+require("dotenv").config();
+
 const { Client } = require("pg");
-console.log("config file", config);
 
 const sql = `CREATE TABLE IF NOT EXISTS authors(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS categories(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
