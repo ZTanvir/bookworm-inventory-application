@@ -3,20 +3,27 @@ require("dotenv").config();
 
 const { Client } = require("pg");
 
-const sql = `CREATE TABLE IF NOT EXISTS authors(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+const sql = `
+CREATE TABLE IF NOT EXISTS authors(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS categories(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
 );
 CREATE TABLE IF NOT EXISTS books(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  number_of_pages int NOT NULL
-)
+  number_of_pages INT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS ratings(
+  id SERIAL PRIMARY KEY,
+  book_id INT NOT NULL,
+  description TEXT NOT NULL,
+  CONSTRAINT bookId FOREIGN KEY(book_id) REFERENCES books(id) ON DELETE CASCADE
+);
 `;
 
 const connectionString = config.dbConnectionInfo;
