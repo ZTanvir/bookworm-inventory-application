@@ -12,6 +12,11 @@ CREATE TABLE IF NOT EXISTS categories(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
+CREATE TABLE IF NOT EXISTS books(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  number_of_pages int NOT NULL
+)
 `;
 
 const connectionString = config.dbConnectionInfo;
