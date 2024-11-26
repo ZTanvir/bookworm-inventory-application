@@ -12,15 +12,5 @@ bookRouters.post("/new", bookControllers.addNewBook);
 bookRouters.put("/update/:id", bookControllers.updateSingleBook);
 // delete a book
 bookRouters.delete("/delete/:id", bookControllers.deleteSingleBook);
-// get all categories
-bookRouters.get("/categories", bookControllers.getAllCategories);
-// get a single categories
-bookRouters.get("/categories/:id", bookControllers.getSingleCategory);
-// add new categories
-bookRouters.post("/categories/new", bookControllers.addCategory);
-// update a category
-bookRouters.put("/categories/update/:id", bookControllers.updateCategory);
-// delete a category
-bookRouters.delete("/categories/delete/:id", bookControllers.deleteCategory);
 
 module.exports = bookRouters;
