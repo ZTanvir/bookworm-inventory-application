@@ -1,0 +1,7 @@
+POST http://localhost:3000/api/category/new HTTP/1.1
+content-type: application/json
+
+{
+    "categoryName": "Classics",
+    "categoryDescription": "Classics encompass a range of book genres, but they always stand the test of time. Classics include centuries-old stories like Homer’s Odyssey, but also more modern novels that have drawn significant acclaim and attention, such as Margaret Atwood’s The Handmaid’s Tale and George Orwell’s 1984."
+}

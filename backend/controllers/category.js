@@ -1,11 +1,15 @@
+const categoriesQuery = require("../db/categoriesQuery");
+
 const getAllCategories = (req, res, next) => {
   res.json({ message: "book categories" });
 };
 const getSingleCategory = (req, res, next) => {
   res.json({ message: "single categories" });
 };
-const addCategory = (req, res, next) => {
-  res.json({ message: "new categories" });
+const addCategory = async (req, res, next) => {
+  const { categoryName, categoryDescription } = req.body;
+  await categoriesQuery.addCategory(categoryName, categoryDescription);
+  res.sendStatus(201);
 };
 const updateCategory = (req, res, next) => {
   res.json({ message: "categories update" });
