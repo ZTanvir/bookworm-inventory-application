@@ -24,6 +24,14 @@ CREATE TABLE IF NOT EXISTS ratings(
   description TEXT NOT NULL,
   CONSTRAINT bookId FOREIGN KEY(book_id) REFERENCES books(id) ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS book_categories(
+  id SERIAL PRIMARY KEY,
+  book_id INT NOT NULL,
+  category_id INT NOT NULL,
+  CONSTRAINT fk_book FOREIGN KEY(book_id) REFERENCES books(id) ON DELETE CASCADE,
+  CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE
+);
+
 `;
 
 const connectionString = config.dbConnectionInfo;
