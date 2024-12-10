@@ -19,8 +19,10 @@ const addCategory = async (req, res, next) => {
 const updateCategory = (req, res, next) => {
   res.json({ message: "categories update" });
 };
-const deleteCategory = (req, res, next) => {
-  res.json({ message: "categories delete" });
+const deleteCategory = async (req, res, next) => {
+  const categoryId = req.params.id;
+  await categoriesQuery.deleteCategory(categoryId);
+  res.sendStatus(204);
 };
 
 module.exports = {

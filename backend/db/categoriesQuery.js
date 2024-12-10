@@ -19,8 +19,13 @@ const getSingleCategory = async (categoryId) => {
   return rows;
 };
 
+const deleteCategory = async (categoryId) => {
+  await pool.query("DELETE FROM categories WHERE id = $1", [categoryId]);
+};
+
 module.exports = {
   getAllCategories,
   addCategory,
   getSingleCategory,
+  deleteCategory,
 };
