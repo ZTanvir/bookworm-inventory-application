@@ -1,7 +1,8 @@
 const categoriesQuery = require("../db/categoriesQuery");
 
-const getAllCategories = (req, res, next) => {
-  res.json({ message: "book categories" });
+const getAllCategories = async (req, res, next) => {
+  const { rows } = await categoriesQuery.getAllCategories();
+  res.json(rows);
 };
 const getSingleCategory = (req, res, next) => {
   res.json({ message: "single categories" });
