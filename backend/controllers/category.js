@@ -16,8 +16,12 @@ const addCategory = async (req, res, next) => {
   await categoriesQuery.addCategory(categoryName, categoryDescription);
   res.sendStatus(201);
 };
-const updateCategory = (req, res, next) => {
-  res.json({ message: "categories update" });
+const updateCategory = async (req, res, next) => {
+  const id = req.params.id;
+  const { name, description } = req.body;
+  console.log(id, name, description);
+  await categoriesQuery.updateCategory(id, name, description);
+  res.sendStatus(200);
 };
 const deleteCategory = async (req, res, next) => {
   const categoryId = req.params.id;

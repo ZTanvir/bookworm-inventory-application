@@ -1,0 +1,8 @@
+PUT http://localhost:3000/api/category/update/3 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Class",
+    "description": "Classics encompass a range of book genres, but they always stand the test of time. Classics include centuries-old stories like Homer’s Odyssey, but also more modern novels that have drawn significant acclaim and attention"
+}
+
