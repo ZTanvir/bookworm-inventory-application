@@ -12,7 +12,15 @@ const addCategory = async (categoryName, description) => {
   ]);
 };
 
+const getSingleCategory = async (categoryId) => {
+  const rows = await pool.query("SELECT * FROM categories WHERE id =  $1", [
+    categoryId,
+  ]);
+  return rows;
+};
+
 module.exports = {
   getAllCategories,
   addCategory,
+  getSingleCategory,
 };
