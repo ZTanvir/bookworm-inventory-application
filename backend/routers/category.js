@@ -6,7 +6,7 @@ const multer = require("multer");
 // Edit file name uploaded by users
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads");
+    cb(null, "./uploads/categories-img");
   },
   filename: function (req, file, cb) {
     const nameOfFile = `${crypto
@@ -33,5 +33,10 @@ categoryRoute.post(
 categoryRoute.put("/category/update/:id", categoryController.updateCategory);
 // delete a category
 categoryRoute.delete("/category/delete/:id", categoryController.deleteCategory);
+
+// view route
+categoryRoute.get("/categorypage/create", (req, res, next) => {
+  res.render("index", {});
+});
 
 module.exports = categoryRoute;

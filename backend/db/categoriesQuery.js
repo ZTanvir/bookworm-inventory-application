@@ -5,11 +5,11 @@ const getAllCategories = async () => {
   return rows;
 };
 
-const addCategory = async (categoryName, description) => {
-  await pool.query("INSERT INTO categories(name,descriptions) VALUES($1,$2)", [
-    categoryName,
-    description,
-  ]);
+const addCategory = async (categoryName, description, imgSec) => {
+  await pool.query(
+    "INSERT INTO categories(name,descriptions,cover_img_src) VALUES($1,$2,$3)",
+    [categoryName, description, imgSec]
+  );
 };
 
 const getSingleCategory = async (categoryId) => {

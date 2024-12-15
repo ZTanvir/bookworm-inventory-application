@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Worm</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/inventory">Home</a></li>
+          <li><a href="/inventory/category/create">New Category</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <form
+        action="/api/category/new"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <label for="name">Name:</label>
+        <input type="text" name="categoryName" id="name" />
+        <label for="description">Description:</label>
+        <textarea
+          name="categoryDescription"
+          id="description"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <input
+          type="file"
+          name="categoryimg"
+          accept="image/*"
+          id="categoryimg"
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>

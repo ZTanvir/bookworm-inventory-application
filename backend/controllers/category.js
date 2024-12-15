@@ -13,8 +13,13 @@ const getSingleCategory = async (req, res, next) => {
 };
 const addCategory = async (req, res, next) => {
   const { categoryName, categoryDescription } = req.body;
-  await categoriesQuery.addCategory(categoryName, categoryDescription);
-  res.sendStatus(201);
+  const converImageSrc = req.file.path;
+  await categoriesQuery.addCategory(
+    categoryName,
+    categoryDescription,
+    converImageSrc
+  );
+  res.redirect("/api/categorypage/create");
 };
 const updateCategory = async (req, res, next) => {
   const id = req.params.id;

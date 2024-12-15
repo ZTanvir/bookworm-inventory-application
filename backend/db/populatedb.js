@@ -11,12 +11,16 @@ CREATE TABLE IF NOT EXISTS authors(
 CREATE TABLE IF NOT EXISTS categories(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  descriptions TEXT NOT NULL
+  descriptions TEXT NOT NULL,
+  cover_img_src TEXT NOT NULL 
 );
 CREATE TABLE IF NOT EXISTS books(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  number_of_pages INT NOT NULL
+  number_of_pages INT NOT NULL,
+  released DATE NOT NULL,
+  price INTEGER NOT NULL,
+  cover_img_src TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS ratings(
   id SERIAL PRIMARY KEY,
