@@ -4,8 +4,9 @@ const morgan = require("morgan");
 const path = require("path");
 const bookRouters = require("./routers/book");
 const bookCategories = require("./routers/category");
+const bookViews = require("./routers/books-views");
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -15,9 +16,10 @@ app.use(morgan("tiny"));
 
 app.use("/api", bookRouters);
 app.use("/api", bookCategories);
+app.use("/inventory", bookViews);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Home page" });
+  res.render("index");
 });
 
 module.exports = app;

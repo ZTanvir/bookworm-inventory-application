@@ -34,9 +34,4 @@ categoryRoute.put("/category/update/:id", categoryController.updateCategory);
 // delete a category
 categoryRoute.delete("/category/delete/:id", categoryController.deleteCategory);
 
-// view route
-categoryRoute.get("/categorypage/create", (req, res, next) => {
-  res.render("index", {});
-});
-
 module.exports = categoryRoute;

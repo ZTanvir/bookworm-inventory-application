@@ -19,7 +19,7 @@ const addCategory = async (req, res, next) => {
     categoryDescription,
     converImageSrc
   );
-  res.redirect("/api/categorypage/create");
+  res.redirect("/");
 };
 const updateCategory = async (req, res, next) => {
   const id = req.params.id;
