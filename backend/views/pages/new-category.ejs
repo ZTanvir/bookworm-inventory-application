@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../public/styles/css-reset.css" />
+    <link rel="stylesheet" href="../../public/styles/category-page.css" />
     <title><%= pageTitle %></title>
   </head>
   <body>
     <%- include("../layout/navbar")%>
     <form
+      id="add-book-category-form"
       action="/api/category/new"
       method="post"
       enctype="multipart/form-data"

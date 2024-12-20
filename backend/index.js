@@ -9,6 +9,8 @@ const bookViews = require("./routers/books-views");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/public", express.static(path.join(__dirname, "public")));
+console.log(path.join(__dirname, "public"));
 
 app.set("view engine", "ejs");
 
