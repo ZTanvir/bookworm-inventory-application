@@ -1,4 +1,15 @@
 const categoriesQuery = require("../db/categoriesQuery");
+const { body, validationResult } = require("express-validator");
+
+// Validate category
+const validateCategory = [
+  body("categoryName")
+    .trim()
+    .isAlpha()
+    .withMessage("Must only contain letters.")
+    .isLength({ min: 1, max: 25 })
+    .withMessage("Category name is too long"),
+];
 
 const getAllCategories = async (req, res, next) => {
   const { rows } = await categoriesQuery.getAllCategories();
@@ -11,16 +22,27 @@ const getSingleCategory = async (req, res, next) => {
     ? res.sendStatus(200).json(rows)
     : res.json("message:category not found");
 };
-const addCategory = async (req, res, next) => {
-  const { categoryName, categoryDescription } = req.body;
-  const converImageSrc = req.file.path;
-  await categoriesQuery.addCategory(
-    categoryName,
-    categoryDescription,
-    converImageSrc
-  );
-  res.redirect("/");
-};
+const addCategory = [
+  validateCategory,
+  async (req, res, next) => {
+    const { categoryName, categoryDescription } = req.body;
+    const coverImageSrc = req.file.path;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("pages/new-category", {
+        pageTitle: "Add new category",
+        errors: errors.array(),
+      });
+    }
+    await categoriesQuery.addCategory(
+      categoryName,
+      categoryDescription,
+      coverImageSrc
+    );
+    res.redirect("/");
+  },
+];
+
 const updateCategory = async (req, res, next) => {
   const id = req.params.id;
   const { name, description } = req.body;
