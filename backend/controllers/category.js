@@ -7,7 +7,7 @@ const validateCategory = [
     .trim()
     .isAlpha()
     .withMessage("Must only contain letters.")
-    .isLength({ min: 1, max: 25 })
+    .isLength({ min: 1, max: 5 })
     .withMessage("Category name is too long"),
 ];
 
@@ -29,6 +29,8 @@ const addCategory = [
     const coverImageSrc = req.file.path;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log("category form errors:", errors.array());
+
       return res.status(400).render("pages/new-category", {
         pageTitle: "Add new category",
         errors: errors.array(),

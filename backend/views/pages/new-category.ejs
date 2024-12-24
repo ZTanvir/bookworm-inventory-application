@@ -18,10 +18,13 @@
       <div class="name-field">
         <label for="name">Name:</label>
         <input type="text" name="categoryName" id="name" required />
-        <p>
-          <% if(errors.length>0) {%> <% errors.forEach((error)=> %>
-          <li><%= error.msg %></li>
-          <% ); %> <% } %>
+        <p class="category-error">
+          <% if(locals.errors.length > 0){ %> <%locals.errors.forEach(item =>
+          {%>
+          <span>
+            <%if(item.path==='categoryName'){%> <%= item.msg %> <%}%>
+          </span>
+          <%}); %> <%} %>
         </p>
       </div>
       <div class="description-field">
