@@ -52,11 +52,6 @@ const updateCategory = async (req, res, next) => {
   await categoriesQuery.updateCategory(id, name, description);
   res.sendStatus(200);
 };
-const deleteCategory = async (req, res, next) => {
-  const categoryId = req.params.id;
-  await categoriesQuery.deleteCategory(categoryId);
-  res.sendStatus(204);
-};
 
 module.exports = {
   getAllCategories,
