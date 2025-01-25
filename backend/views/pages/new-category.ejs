@@ -9,6 +9,7 @@
   </head>
   <body>
     <%- include("../layout/navbar")%>
+    <h1>Create category</h1>
     <form
       id="add-book-category-form"
       action="/api/category/new"
@@ -16,8 +17,14 @@
       enctype="multipart/form-data"
     >
       <div class="name-field">
-        <label for="name">Name:</label>
-        <input type="text" name="categoryName" id="name" required />
+        <label for="name">Name *:</label>
+        <input
+          type="text"
+          name="categoryName"
+          id="name"
+          placeholder="Fantasy, Mystery, Thriller"
+          required
+        />
         <p class="category-error">
           <% if(locals.errors.length > 0){ %> <%locals.errors.forEach(item =>
           {%>
@@ -28,7 +35,7 @@
         </p>
       </div>
       <div class="description-field">
-        <label for="description">Description:</label>
+        <label for="description">Description *:</label>
         <textarea
           name="categoryDescription"
           id="description"
