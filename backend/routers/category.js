@@ -32,6 +32,6 @@ categoryRoute.post(
 // update a category
 categoryRoute.put("/category/update/:id", categoryController.updateCategory);
 // delete a category
-categoryRoute.delete("/category/delete/:id", categoryController.deleteCategory);
+// categoryRoute.delete("/category/delete/:id", categoryController.deleteCategory);
 
 module.exports = categoryRoute;

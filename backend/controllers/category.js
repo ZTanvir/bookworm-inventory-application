@@ -58,5 +58,4 @@ module.exports = {
   getSingleCategory,
   addCategory,
   updateCategory,
-  deleteCategory,
 };
