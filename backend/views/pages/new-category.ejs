@@ -8,50 +8,53 @@
     <title><%= pageTitle %></title>
   </head>
   <body>
-    <%- include("../layout/navbar")%>
-    <h1>Create category</h1>
-    <form
-      id="add-book-category-form"
-      action="/api/category/new"
-      method="post"
-      enctype="multipart/form-data"
-    >
-      <div class="name-field">
-        <label for="name">Name *:</label>
+    <header><%- include("../layout/navbar")%></header>
+    <main>
+      <h1>Create category</h1>
+
+      <form
+        id="add-book-category-form"
+        action="/api/category/new"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="name-field">
+          <label for="name">Name *:</label>
+          <input
+            type="text"
+            name="categoryName"
+            id="name"
+            placeholder="Fantasy, Mystery, Thriller"
+            required
+          />
+          <p class="category-error">
+            <% if(locals.errors.length > 0){ %> <%locals.errors.forEach(item =>
+            {%>
+            <span>
+              <%if(item.path==='categoryName'){%> <%= item.msg %> <%}%>
+            </span>
+            <%}); %> <%} %>
+          </p>
+        </div>
+        <div class="description-field">
+          <label for="description">Description *:</label>
+          <textarea
+            name="categoryDescription"
+            id="description"
+            cols="30"
+            rows="10"
+            required
+          ></textarea>
+        </div>
         <input
-          type="text"
-          name="categoryName"
-          id="name"
-          placeholder="Fantasy, Mystery, Thriller"
+          type="file"
+          name="categoryimg"
+          accept="image/*"
+          id="categoryimg"
           required
         />
-        <p class="category-error">
-          <% if(locals.errors.length > 0){ %> <%locals.errors.forEach(item =>
-          {%>
-          <span>
-            <%if(item.path==='categoryName'){%> <%= item.msg %> <%}%>
-          </span>
-          <%}); %> <%} %>
-        </p>
-      </div>
-      <div class="description-field">
-        <label for="description">Description *:</label>
-        <textarea
-          name="categoryDescription"
-          id="description"
-          cols="30"
-          rows="10"
-          required
-        ></textarea>
-      </div>
-      <input
-        type="file"
-        name="categoryimg"
-        accept="image/*"
-        id="categoryimg"
-        required
-      />
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+    </main>
   </body>
 </html>

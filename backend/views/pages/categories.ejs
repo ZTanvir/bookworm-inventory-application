@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <header><%- include("../layout/navbar")%></header>
+    <p>all data<%= JSON.stringify(locals.categoryList) %></p>
+    <main>
+      <!--Display category -->
+      <%if (locals.categoryList.length > 0) {%>
+      <%locals.categoryList.forEach(items => {%>
+      <section id="<%=items.id %>">
+        <p class="title"><%= items.name %></p>
+        <img
+          class="category-img"
+          src="/<%= items.cover_img_src  %>"
+          alt="category-image"
+        />
+      </section>
+      <%}); %> <% }else{%>
+      <h2>No categories available</h2>
+      <p>Please add one from <a href="create">here.</a></p>
+      <%} %>
+    </main>
+  </body>
+</html>
