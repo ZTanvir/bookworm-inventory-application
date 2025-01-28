@@ -18,5 +18,13 @@
 .add-category-msg > p {
   font-size: 1.5rem;
 }
+.add-category-link {
+  color: var(--link-black, rgb(27, 27, 27));
+}
+.add-category-link:hover,
+.add-category-link:focus {
+  color: var(--link-gray, rgb(83, 82, 82));
+}
+
 .category-container > section {
 }
