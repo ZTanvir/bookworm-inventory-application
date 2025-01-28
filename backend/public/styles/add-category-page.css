@@ -10,6 +10,7 @@ main {
 }
 main > h1 {
   margin-top: 2rem;
+  font-size: 4rem;
 }
 #add-book-category-form {
   display: flex;

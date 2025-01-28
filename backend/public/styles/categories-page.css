@@ -5,5 +5,18 @@
   justify-content: space-evenly;
   gap: 1rem;
 }
+
+.add-category-msg {
+  grid-column: 1/-1;
+  justify-self: center;
+  align-self: center;
+  margin-top: 1rem;
+}
+.add-category-msg > h2 {
+  font-size: 3rem;
+}
+.add-category-msg > p {
+  font-size: 1.5rem;
+}
 .category-container > section {
 }
