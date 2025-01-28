@@ -1,21 +1,20 @@
-body {
+main {
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-.container {
+  gap: 2rem;
   width: 80%;
   max-width: 1200px;
   margin: auto;
 }
+main > h1 {
+  margin-top: 2rem;
+}
 #add-book-category-form {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 1rem;
   min-width: 60%;
 }
 :is(.name-field > label, .description-field > label) {
@@ -39,6 +38,7 @@ body {
 :is(.name-field, .description-field) {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 button[type="submit"] {
   align-self: center;

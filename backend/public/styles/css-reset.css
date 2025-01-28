@@ -59,3 +59,20 @@ h6 {
 #__next {
   isolation: isolate;
 }
+.navbar > ul {
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+.navbar > ul > li {
+  list-style: none;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+.navbar > ul > li > a:hover {
+  text-decoration: underline;
+}
+.navbar > ul > li > a {
+  text-decoration: none;
+  color: rgb(27, 27, 27);
+}

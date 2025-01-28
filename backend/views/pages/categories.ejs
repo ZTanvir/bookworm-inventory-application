@@ -3,28 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="stylesheet" href="../../public/styles/css-reset.css" />
+    <link rel="stylesheet" href="../../public/styles/categories-page.css" />
     <title><%= pageTitle %></title>
   </head>
   <body>
     <header><%- include("../layout/navbar")%></header>
-    <p>all data<%= JSON.stringify(locals.categoryList) %></p>
     <main>
       <!--Display category -->
-      <%if (locals.categoryList.length > 0) {%>
-      <%locals.categoryList.forEach(items => {%>
-      <section id="<%=items.id %>">
-        <p class="title"><%= items.name %></p>
-        <img
-          class="category-img"
-          src="/<%= items.cover_img_src  %>"
-          alt="category-image"
-        />
-      </section>
-      <%}); %> <% }else{%>
-      <h2>No categories available</h2>
-      <p>Please add one from <a href="create">here.</a></p>
-      <%} %>
+      <div class="category-container">
+        <%if (locals.categoryList.length > 0) {%>
+        <%locals.categoryList.forEach(items => {%>
+        <section id="<%=items.id %>">
+          <p class="title"><%= items.name %></p>
+          <img
+            class="category-img"
+            src="/<%= items.cover_img_src  %>"
+            alt="category-image"
+          />
+        </section>
+        <%}); %> <% }else{%>
+
+        <div class="add-category-msg">
+          <h2>No categories available</h2>
+          <p>
+            Please add one from <a href="/inventory/category/create">here.</a>
+          </p>
+        </div>
+        <%} %>
+      </div>
     </main>
   </body>
 </html>
