@@ -1,8 +1,10 @@
 .category-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 15rem);
   justify-content: space-evenly;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -18,7 +20,8 @@
 .add-category-msg > p {
   font-size: 1.5rem;
 }
-.add-category-link {
+.add-category-link,
+.visit-category-link {
   color: var(--link-black, rgb(27, 27, 27));
 }
 .add-category-link:hover,
@@ -26,5 +29,23 @@
   color: var(--link-gray, rgb(83, 82, 82));
 }
 
-.category-container > section {
+.category-wrapper {
+  overflow: hidden;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.category-title {
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.category-img {
+  object-fit: contain;
+  border-radius: 1rem;
 }

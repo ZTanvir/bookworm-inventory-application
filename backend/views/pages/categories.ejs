@@ -14,13 +14,15 @@
       <div class="category-container">
         <%if (locals.categoryList.length > 0) {%>
         <%locals.categoryList.forEach(items => {%>
-        <section id="<%=items.id %>">
-          <p class="title"><%= items.name %></p>
-          <img
-            class="category-img"
-            src="/<%= items.cover_img_src %>"
-            alt="category-image"
-          />
+        <section id="<%=items.id %>" class="category-wrapper">
+          <a class="visit-category-link" href="/api/category/<%=items.id  %>">
+            <p class="category-title"><%= items.name %></p>
+            <img
+              class="category-img"
+              src="/<%= items.cover_img_src %>"
+              alt="category-image"
+            />
+          </a>
         </section>
         <%}); %> <% }else{%>
 

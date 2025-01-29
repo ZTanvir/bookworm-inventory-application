@@ -16,9 +16,8 @@ const getAllCategories = async (req, res, next) => {
 const getSingleCategory = async (req, res, next) => {
   const categoryId = req.params.id;
   const { rows } = await categoriesQuery.getSingleCategory(categoryId);
-  rows.length > 0
-    ? res.sendStatus(200).json(rows)
-    : res.json("message:category not found");
+
+  rows.length > 0 ? res.json(rows[0]) : res.json("message:category not found");
 };
 const addCategory = [
   validateCategory,
