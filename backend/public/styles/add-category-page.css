@@ -41,6 +41,11 @@ main > h1 {
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.add-category-error-msg {
+  color: var(--error-red, rgb(224, 20, 20));
+}
+
 button[type="submit"] {
   align-self: center;
   padding: 0.5rem 1.5rem;

@@ -66,6 +66,8 @@ a {
 :root {
   --link-black: rgb(27, 27, 27);
   --link-gray: rgb(83, 82, 82);
+
+  --error-red: rgb(224, 20, 20);
 }
 
 body {

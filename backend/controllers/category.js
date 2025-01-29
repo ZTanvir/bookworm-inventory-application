@@ -5,10 +5,8 @@ const { body, validationResult } = require("express-validator");
 const validateCategory = [
   body("categoryName")
     .trim()
-    .isAlpha()
-    .withMessage("Must only contain letters.")
-    .isLength({ min: 1, max: 5 })
-    .withMessage("Category name is too long"),
+    .isLength({ min: 1, max: 30 })
+    .withMessage("Category name is too long."),
 ];
 
 const getAllCategories = async (req, res, next) => {
