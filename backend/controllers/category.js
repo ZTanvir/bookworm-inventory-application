@@ -13,21 +13,22 @@ const getAllCategories = async (req, res, next) => {
   const { rows } = await categoriesQuery.getAllCategories();
   res.json(rows);
 };
+
 const getSingleCategory = async (req, res, next) => {
   const categoryId = req.params.id;
   const { rows } = await categoriesQuery.getSingleCategory(categoryId);
 
   rows.length > 0 ? res.json(rows[0]) : res.json("message:category not found");
 };
+
 const addCategory = [
   validateCategory,
   async (req, res, next) => {
     const { categoryName, categoryDescription } = req.body;
     const coverImageSrc = req.file.path;
     const errors = validationResult(req);
+    // user submitted incorrect data via form
     if (!errors.isEmpty()) {
-      console.log("category form errors:", errors.array());
-
       return res.status(400).render("pages/new-category", {
         pageTitle: "Add new category",
         errors: errors.array(),
@@ -45,7 +46,6 @@ const addCategory = [
 const updateCategory = async (req, res, next) => {
   const id = req.params.id;
   const { name, description } = req.body;
-  console.log(id, name, description);
   await categoriesQuery.updateCategory(id, name, description);
   res.sendStatus(200);
 };
