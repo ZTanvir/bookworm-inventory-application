@@ -25,16 +25,21 @@ exports.getAllCategories = async (req, res) => {
 
 exports.getSingleCategory = async (req, res) => {
   // call db for a book categories details
+  const categoryId = req.params.id;
+
   try {
-    const { rows } = await categoriesDb.getAllCategories();
-    res.render("pages/categories", {
-      pageTitle: "Category List",
-      categoryList: rows,
+    const { rows } = await categoriesDb.getSingleCategory(categoryId);
+
+    const pageTitle = rows[0].name;
+    res.render("pages/category-descriptions", {
+      pageTitle,
+      categoryDetails: rows,
     });
   } catch (error) {
-    res.render("pages/categories", {
-      pageTitle: "Category List",
-      categoryList: [],
+    res.render("pages/category-descriptions", {
+      pageTitle,
+      categoryDetails: [],
+      errors: error,
     });
   }
 };

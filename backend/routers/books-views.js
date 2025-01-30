@@ -4,6 +4,6 @@ const bookViewsController = require("../controllers/book-views");
 
 bookViews.get("/category/create", bookViewsController.createNewCategoryGet);
 bookViews.get("/categories", bookViewsController.getAllCategories);
-bookViews.get("/categories/:id", bookViewsController.getAllCategories);
+bookViews.get("/categories/:id", bookViewsController.getSingleCategory);
 
 module.exports = bookViews;

@@ -3,9 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../../public/styles/css-reset.css" />
+    <title><%= pageTitle %></title>
   </head>
   <body>
-    <%=include("../layout/navbar") %>
+    <header><%-include("../layout/navbar") %></header>
+    <main><%=JSON.stringify(categoryDetails) %></main>
+    <main>
+      <%categoryDetails.forEach(item => {%>
+      <section class="category-details-wrapper">
+        <img src="/<%= item.cover_img_src%>" alt="" />
+        <h2><%= item.name %></h2>
+        <p><%= item.descriptions %></p>
+      </section>
+      <%}); %>
+    </main>
   </body>
 </html>

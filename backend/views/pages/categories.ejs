@@ -15,7 +15,10 @@
         <%if (locals.categoryList.length > 0) {%>
         <%locals.categoryList.forEach(items => {%>
         <section id="<%=items.id %>" class="category-wrapper">
-          <a class="visit-category-link" href="/api/category/<%=items.id  %>">
+          <a
+            class="visit-category-link"
+            href="/inventory/categories/<%=items.id  %>"
+          >
             <p class="category-title"><%= items.name %></p>
             <img
               class="category-img"
