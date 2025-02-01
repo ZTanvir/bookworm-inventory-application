@@ -26,20 +26,18 @@ exports.getAllCategories = async (req, res) => {
 exports.getSingleCategory = async (req, res) => {
   // call db for a book categories details
   const categoryId = req.params.id;
-
-  try {
-    const { rows } = await categoriesDb.getSingleCategory(categoryId);
-
+  const { rows } = await categoriesDb.getSingleCategory(categoryId);
+  if (rows.length > 0) {
     const pageTitle = rows[0].name;
     res.render("pages/category-descriptions", {
       pageTitle,
       categoryDetails: rows,
     });
-  } catch (error) {
+  } else {
     res.render("pages/category-descriptions", {
-      pageTitle,
+      pageTitle: "Not found",
       categoryDetails: [],
-      errors: error,
+      errorMessage: "Item not found.",
     });
   }
 };

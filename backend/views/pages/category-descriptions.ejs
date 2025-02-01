@@ -10,13 +10,16 @@
     <header><%-include("../layout/navbar") %></header>
     <main><%=JSON.stringify(categoryDetails) %></main>
     <main>
-      <%categoryDetails.forEach(item => {%>
+      <% if (categoryDetails.length > 0) { %> <%categoryDetails.forEach(item =>
+      {%>
       <section class="category-details-wrapper">
         <img src="/<%= item.cover_img_src%>" alt="" />
         <h2><%= item.name %></h2>
         <p><%= item.descriptions %></p>
       </section>
-      <%}); %>
+      <%}); %> <% }else{ %>
+      <h2><%=errorMessage %></h2>
+      <%} %>
     </main>
   </body>
 </html>
