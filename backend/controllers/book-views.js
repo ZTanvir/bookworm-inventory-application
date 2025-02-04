@@ -41,3 +41,12 @@ exports.getSingleCategory = async (req, res) => {
     });
   }
 };
+
+exports.createNewItemGet = async (req, res) => {
+  const { rows } = await categoriesDb.getAllCategories();
+  /* rows will return empty array  */
+  res.render("pages/new-items", {
+    pageTitle: "Create Category",
+    categories: rows,
+  });
+};
