@@ -10,7 +10,7 @@
     <header><%- include("../layout/navbar") %></header>
     <main>
       <h1>Create Item</h1>
-      <form action="" method="post">
+      <form action="inventory/item/create" method="post">
         <div>
           <label for="book-name">Name*:</label>
           <input type="text" name="name" id="book-name" required />
@@ -27,7 +27,23 @@
         </div>
         <div>
           <label for="book-categories">Categories*:</label>
-          <div><%= JSON.stringify(categories) %></div>
+          <!-- Generate checkbox based on categories table in the db -->
+          <% if (categories.length>0) { %> <% categories.forEach(element => { %>
+          <input
+            type="checkbox"
+            name="<%=element.name%><%=element.id%>"
+            id="<%=element.name%><%=element.id%>"
+            value="<%= element.id%>"
+          />
+          <label for="<%=element.name%><%=element.id%>"
+            ><%=element.name%></label
+          >
+          <% }) %> <% }else{ %>
+          <p>
+            Please add a category from
+            <a href="/inventory/category/create">here</a>.
+          </p>
+          <%} %>
         </div>
         <div>
           <label for="book-authors">Authors*:</label>
@@ -45,10 +61,10 @@
           <label for="book-price">Price*:</label>
           <input type="number" name="price" id="book-price" min="0" required />
         </div>
-        <div>
+        <!-- <div>
           <label for="book-cover">Cover image*:</label>
           <input type="file" name="coverimg" id="book-cover" required />
-        </div>
+        </div> -->
         <button type="submit">Submit</button>
       </form>
     </main>

@@ -45,7 +45,7 @@ exports.getSingleCategory = async (req, res) => {
 exports.createNewItemGet = async (req, res) => {
   let { rows } = await categoriesDb.getAllCategories();
   if (rows.length > 0) {
-    rows = rows.map(({ id, name }) => ({ [id]: name }));
+    rows = rows.map(({ id, name }) => ({ id, name }));
   }
 
   /* rows will return empty array  */
@@ -54,3 +54,4 @@ exports.createNewItemGet = async (req, res) => {
     categories: rows,
   });
 };
+exports.createNewItemPost = async (req, res) => {};
