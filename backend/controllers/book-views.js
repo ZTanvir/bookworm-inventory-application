@@ -43,7 +43,11 @@ exports.getSingleCategory = async (req, res) => {
 };
 
 exports.createNewItemGet = async (req, res) => {
-  const { rows } = await categoriesDb.getAllCategories();
+  let { rows } = await categoriesDb.getAllCategories();
+  if (rows.length > 0) {
+    rows = rows.map(({ id, name }) => ({ [id]: name }));
+  }
+
   /* rows will return empty array  */
   res.render("pages/new-items", {
     pageTitle: "Create Category",

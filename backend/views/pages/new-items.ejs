@@ -10,7 +10,47 @@
     <header><%- include("../layout/navbar") %></header>
     <main>
       <h1>Create Item</h1>
-      <form action="" method="post"></form>
+      <form action="" method="post">
+        <div>
+          <label for="book-name">Name*:</label>
+          <input type="text" name="name" id="book-name" required />
+        </div>
+        <div>
+          <label for="book-descriptions">Descriptions*:</label>
+          <textarea
+            name="descriptions"
+            id="book-descriptions"
+            cols="30"
+            rows="10"
+            required
+          ></textarea>
+        </div>
+        <div>
+          <label for="book-categories">Categories*:</label>
+          <div><%= JSON.stringify(categories) %></div>
+        </div>
+        <div>
+          <label for="book-authors">Authors*:</label>
+          <input type="text" name="authors" id="book-authors" required />
+        </div>
+        <div>
+          <label for="book-pages">Pages*:</label>
+          <input type="number" name="pages" id="book-pages" min="0" required />
+        </div>
+        <div>
+          <label for="book-release-date">Release date*:</label>
+          <input type="date" name="release" id="book-release-date" required />
+        </div>
+        <div>
+          <label for="book-price">Price*:</label>
+          <input type="number" name="price" id="book-price" min="0" required />
+        </div>
+        <div>
+          <label for="book-cover">Cover image*:</label>
+          <input type="file" name="coverimg" id="book-cover" required />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </main>
   </body>
 </html>
