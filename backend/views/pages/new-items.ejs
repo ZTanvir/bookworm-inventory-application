@@ -10,7 +10,7 @@
     <header><%- include("../layout/navbar") %></header>
     <main>
       <h1>Create Item</h1>
-      <form action="inventory/item/create" method="post">
+      <form id="item-form" action="/inventory/item/create" method="post">
         <div>
           <label for="book-name">Name*:</label>
           <input type="text" name="name" id="book-name" required />
@@ -25,19 +25,17 @@
             required
           ></textarea>
         </div>
-        <div>
+        <div class="categories">
           <label for="book-categories">Categories*:</label>
           <!-- Generate checkbox based on categories table in the db -->
           <% if (categories.length>0) { %> <% categories.forEach(element => { %>
           <input
             type="checkbox"
-            name="<%=element.name%><%=element.id%>"
-            id="<%=element.name%><%=element.id%>"
+            name="category"
+            id="category<%=element.id%>"
             value="<%= element.id%>"
           />
-          <label for="<%=element.name%><%=element.id%>"
-            ><%=element.name%></label
-          >
+          <label for="category<%=element.id%>"><%=element.name%></label>
           <% }) %> <% }else{ %>
           <p>
             Please add a category from
@@ -69,4 +67,40 @@
       </form>
     </main>
   </body>
+  <script>
+    const itemFormEl = document.querySelector("#item-form");
+
+    const checkboxesEl = document.querySelectorAll(
+      ".categories > input[type=checkbox]"
+    );
+
+    function validateCheckbox() {
+      const firstCheckBox = checkboxesEl.length > 0 ? checkboxesEl[0] : null;
+
+      // total checked item
+      const totalCheckedCheckbox = itemFormEl.querySelectorAll(
+        "input[type=checkbox]:checked"
+      ).length;
+
+      totalCheckedCheckbox < 1
+        ? firstCheckBox.setCustomValidity("At least check one category")
+        : firstCheckBox.setCustomValidity("");
+      return totalCheckedCheckbox < 1;
+    }
+
+    if (checkboxesEl.length > 0) {
+      checkboxesEl.forEach((checkBox) => {
+        checkBox.addEventListener("change", validateCheckbox);
+      });
+    }
+    // add custom validity msg if no checkbox is selected
+    validateCheckbox();
+
+    itemFormEl.addEventListener("submit", (event) => {
+      // prevent the from sending
+      if (validateCheckbox()) {
+        event.preventDefault();
+      }
+    });
+  </script>
 </html>

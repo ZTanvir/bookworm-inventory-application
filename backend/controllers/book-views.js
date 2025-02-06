@@ -54,4 +54,7 @@ exports.createNewItemGet = async (req, res) => {
     categories: rows,
   });
 };
-exports.createNewItemPost = async (req, res) => {};
+
+exports.createNewItemPost = async (req, res) => {
+  console.log(req.body);
+};
