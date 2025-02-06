@@ -4,7 +4,6 @@ main {
   justify-content: start;
   align-items: center;
   gap: 2rem;
-  width: 80%;
   max-width: 1200px;
   margin: auto;
 }

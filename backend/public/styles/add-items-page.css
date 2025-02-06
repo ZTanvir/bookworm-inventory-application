@@ -1,0 +1,23 @@
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#item-form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  gap: 0.5rem;
+}
+#item-form > div {
+  display: flex;
+  flex-direction: column;
+}
+#item-form > button[type="submit"] {
+  align-self: center;
+  width: 100px;
+  padding: 0.5rem 1.5rem;
+}
+#item-form > button[type="submit"]:hover {
+  cursor: pointer;
+}

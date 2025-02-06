@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../public/styles/css-reset.css" />
+    <link rel="stylesheet" href="../../public/styles/add-items-page.css" />
     <title><%= pageTitle %></title>
   </head>
   <body>
@@ -13,7 +14,13 @@
       <form id="item-form" action="/inventory/item/create" method="post">
         <div>
           <label for="book-name">Name*:</label>
-          <input type="text" name="name" id="book-name" required />
+          <input
+            type="text"
+            name="name"
+            id="book-name"
+            autocomplete="none"
+            required
+          />
         </div>
         <div>
           <label for="book-descriptions">Descriptions*:</label>
@@ -26,16 +33,18 @@
           ></textarea>
         </div>
         <div class="categories">
-          <label for="book-categories">Categories*:</label>
+          <p>Categories*:</p>
           <!-- Generate checkbox based on categories table in the db -->
           <% if (categories.length>0) { %> <% categories.forEach(element => { %>
-          <input
-            type="checkbox"
-            name="category"
-            id="category<%=element.id%>"
-            value="<%= element.id%>"
-          />
-          <label for="category<%=element.id%>"><%=element.name%></label>
+          <div>
+            <input
+              type="checkbox"
+              name="category"
+              id="category<%=element.id%>"
+              value="<%= element.id%>"
+            />
+            <label for="category<%=element.id%>"><%=element.name%></label>
+          </div>
           <% }) %> <% }else{ %>
           <p>
             Please add a category from
@@ -59,10 +68,10 @@
           <label for="book-price">Price*:</label>
           <input type="number" name="price" id="book-price" min="0" required />
         </div>
-        <!-- <div>
+        <div>
           <label for="book-cover">Cover image*:</label>
-          <input type="file" name="coverimg" id="book-cover" required />
-        </div> -->
+          <input type="file" name="bookCoverImg" id="book-cover" required />
+        </div>
         <button type="submit">Submit</button>
       </form>
     </main>
@@ -71,9 +80,10 @@
     const itemFormEl = document.querySelector("#item-form");
 
     const checkboxesEl = document.querySelectorAll(
-      ".categories > input[type=checkbox]"
+      ".categories >div> input[type=checkbox]"
     );
 
+    // add custom validity msg if no checkbox is selected
     function validateCheckbox() {
       const firstCheckBox = checkboxesEl.length > 0 ? checkboxesEl[0] : null;
 
@@ -93,7 +103,6 @@
         checkBox.addEventListener("change", validateCheckbox);
       });
     }
-    // add custom validity msg if no checkbox is selected
     validateCheckbox();
 
     itemFormEl.addEventListener("submit", (event) => {
