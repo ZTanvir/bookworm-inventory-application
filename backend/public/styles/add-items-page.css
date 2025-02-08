@@ -2,6 +2,10 @@ main {
   max-width: 1200px;
   margin: 0 auto;
 }
+main > h1 {
+  margin-top: 1.5rem;
+  text-align: center;
+}
 #item-form {
   margin: 0 auto;
   display: flex;
@@ -12,6 +16,18 @@ main {
 #item-form > div {
   display: flex;
   flex-direction: column;
+}
+:is(#item-form input[type="text"], textarea, #item-form input[type="number"]) {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  border-radius: 7px;
+  border: none;
+  background-color: rgb(235, 235, 235);
+  padding: 0.75rem;
+}
+:is(#item-form > div > label, .categories-title) {
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 #item-form > button[type="submit"] {
   align-self: center;
