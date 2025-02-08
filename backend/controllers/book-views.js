@@ -1,5 +1,4 @@
 const categoriesDb = require("../db/categoriesQuery");
-const logger = require("../utils/logger");
 
 exports.createNewCategoryGet = (req, res) => {
   res.render("pages/new-category", {
@@ -55,6 +54,8 @@ exports.createNewItemGet = async (req, res) => {
   });
 };
 
-exports.createNewItemPost = async (req, res) => {
-  console.log(req.body);
-};
+exports.createNewItemPost = [
+  async (req, res) => {
+    console.log(req.body);
+  },
+];
