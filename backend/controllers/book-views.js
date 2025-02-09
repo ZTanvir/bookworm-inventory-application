@@ -70,6 +70,7 @@ exports.createNewItemGet = async (req, res) => {
     categories: rows,
     validateErrors: [],
     result: null,
+    formdata: {},
   });
 };
 
@@ -91,6 +92,7 @@ exports.createNewItemPost = [
         categories: rows,
         validateErrors: error["errors"],
         helperFunctions: helper,
+        formdata: req.body,
       });
     }
     console.log(req.body);

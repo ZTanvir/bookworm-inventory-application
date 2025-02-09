@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../public/styles/add-items-page.css" />
     <title><%= pageTitle %></title>
   </head>
+
   <body>
     <header><%- include("../layout/navbar") %></header>
     <main>
@@ -14,10 +15,11 @@
       <form id="item-form" action="/inventory/item/create" method="post">
         <div>
           <label for="book-name">Name*:</label>
-          <input type="text" name="name" id="book-name" autocomplete="none" />
+          <input type="text" value="<%= formdata["name"] %>" name="name"
+          id="book-name" autocomplete="none" />
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "name")%> <%} %>
+            helperFunctions.filterErrorMsg(validateErrors, "name" )%> <%} %>
           </p>
         </div>
 
@@ -28,41 +30,48 @@
             id="book-descriptions"
             cols="30"
             rows="10"
-          ></textarea>
+          >
+<% if(Object.keys(formdata).length>0){%>
+ <%= formdata["descriptions"] %>"
+<%}%></textarea
+          >
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "descriptions")%> <%}
-            %>
+            helperFunctions.filterErrorMsg(validateErrors, "descriptions" )%>
+            <%} %>
           </p>
         </div>
         <div>
           <label for="book-authors">Authors*:</label>
-          <input type="text" name="authors" id="book-authors" />
+          <input type="text" name="authors" value="<%= formdata["authors"] %>"
+          id="book-authors" />
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "authors")%> <%} %>
+            helperFunctions.filterErrorMsg(validateErrors, "authors" )%> <%} %>
           </p>
         </div>
         <div>
           <label for="book-pages">Pages*:</label>
-          <input type="number" name="pages" id="book-pages" min="0" />
+          <input type="number" name="pages" value="<%= formdata["pages"] %>"
+          id="book-pages" min="0" />
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "pages")%> <%} %>
+            helperFunctions.filterErrorMsg(validateErrors, "pages" )%> <%} %>
           </p>
         </div>
         <div>
           <label for="book-price">Price*:</label>
-          <input type="number" name="price" id="book-price" min="0" />
+          <input type="number" name="price" value="<%= formdata["price"] %>"
+          id="book-price" min="0" />
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "price")%> <%} %>
+            helperFunctions.filterErrorMsg(validateErrors, "price" )%> <%} %>
           </p>
         </div>
         <div class="categories">
           <p class="categories-title">Categories*:</p>
           <!-- Generate checkbox based on categories table in the db -->
-          <% if (categories.length>0) { %> <% categories.forEach(element => { %>
+          <% if (categories.length>0) { %> <% categories.forEach(element=> { %>
           <div>
             <input
               type="checkbox"
@@ -70,12 +79,12 @@
               id="category<%=element.id%>"
               value="<%= element.id%>"
             />
-            <label for="category<%=element.id%>"><%=element.name%></label>
+            <label for="category<%=element.id%>"> <%=element.name%> </label>
           </div>
           <% }) %>
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "category")%> <%} %>
+            helperFunctions.filterErrorMsg(validateErrors, "category" )%> <%} %>
           </p>
           <% }else{ %>
           <p>
@@ -86,10 +95,11 @@
         </div>
         <div>
           <label for="book-release-date">Release date*:</label>
-          <input type="date" name="release" id="book-release-date" />
+          <input type="date" name="release" value="<%= formdata["release"] %>"
+          id="book-release-date" />
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "release")%> <%} %>
+            helperFunctions.filterErrorMsg(validateErrors, "release" )%> <%} %>
           </p>
         </div>
         <div>
@@ -102,8 +112,8 @@
           />
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
-            helperFunctions.filterErrorMsg(validateErrors, "bookCoverImg")%> <%}
-            %>
+            helperFunctions.filterErrorMsg(validateErrors, "bookCoverImg" )%>
+            <%} %>
           </p>
         </div>
         <button type="submit">Submit</button>
