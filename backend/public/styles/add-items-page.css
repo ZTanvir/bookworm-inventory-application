@@ -11,12 +11,14 @@ main > h1 {
   display: flex;
   flex-direction: column;
   max-width: 60%;
-  gap: 0.5rem;
+  gap: 1.5rem;
 }
 #item-form > div {
   display: flex;
+  gap: 0.5rem;
   flex-direction: column;
 }
+
 :is(#item-form input[type="text"], textarea, #item-form input[type="number"]) {
   font-size: 1.3rem;
   line-height: 1.2;
