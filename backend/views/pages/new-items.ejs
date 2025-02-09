@@ -14,14 +14,13 @@
       <form id="item-form" action="/inventory/item/create" method="post">
         <div>
           <label for="book-name">Name*:</label>
-          <input
-            type="text"
-            name="name"
-            id="book-name"
-            autocomplete="none"
-            required
-          />
+          <input type="text" name="name" id="book-name" autocomplete="none" />
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "name")%> <%} %>
+          </p>
         </div>
+
         <div>
           <label for="book-descriptions">Descriptions*:</label>
           <textarea
@@ -29,20 +28,36 @@
             id="book-descriptions"
             cols="30"
             rows="10"
-            required
           ></textarea>
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "descriptions")%> <%}
+            %>
+          </p>
         </div>
         <div>
           <label for="book-authors">Authors*:</label>
-          <input type="text" name="authors" id="book-authors" required />
+          <input type="text" name="authors" id="book-authors" />
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "authors")%> <%} %>
+          </p>
         </div>
         <div>
           <label for="book-pages">Pages*:</label>
-          <input type="number" name="pages" id="book-pages" min="0" required />
+          <input type="number" name="pages" id="book-pages" min="0" />
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "pages")%> <%} %>
+          </p>
         </div>
         <div>
           <label for="book-price">Price*:</label>
-          <input type="number" name="price" id="book-price" min="0" required />
+          <input type="number" name="price" id="book-price" min="0" />
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "price")%> <%} %>
+          </p>
         </div>
         <div class="categories">
           <p class="categories-title">Categories*:</p>
@@ -57,7 +72,12 @@
             />
             <label for="category<%=element.id%>"><%=element.name%></label>
           </div>
-          <% }) %> <% }else{ %>
+          <% }) %>
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "category")%> <%} %>
+          </p>
+          <% }else{ %>
           <p>
             Please add a category from
             <a href="/inventory/category/create">here</a>.
@@ -66,11 +86,25 @@
         </div>
         <div>
           <label for="book-release-date">Release date*:</label>
-          <input type="date" name="release" id="book-release-date" required />
+          <input type="date" name="release" id="book-release-date" />
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "release")%> <%} %>
+          </p>
         </div>
         <div>
           <label for="book-cover">Cover image*:</label>
-          <input type="file" name="bookCoverImg" id="book-cover" required />
+          <input
+            accept="image/*"
+            type="file"
+            name="bookCoverImg"
+            id="book-cover"
+          />
+          <p class="error-msg">
+            <%if(validateErrors.length>0){%> <%=
+            helperFunctions.filterErrorMsg(validateErrors, "bookCoverImg")%> <%}
+            %>
+          </p>
         </div>
         <button type="submit">Submit</button>
       </form>
@@ -103,13 +137,13 @@
         checkBox.addEventListener("change", validateCheckbox);
       });
     }
-    validateCheckbox();
+    // validateCheckbox();
 
-    itemFormEl.addEventListener("submit", (event) => {
-      // prevent the from sending
-      if (validateCheckbox()) {
-        event.preventDefault();
-      }
-    });
+    // itemFormEl.addEventListener("submit", (event) => {
+    //   // prevent the from sending
+    //   if (validateCheckbox()) {
+    //     event.preventDefault();
+    //   }
+    // });
   </script>
 </html>

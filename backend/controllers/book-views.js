@@ -1,4 +1,21 @@
 const categoriesDb = require("../db/categoriesQuery");
+const helper = require("../utils/helper");
+const { check, validationResult } = require("express-validator");
+
+const validateNewItem = [
+  check("name").notEmpty().withMessage("Please add a name."),
+  check("descriptions").notEmpty().withMessage("Please add descriptions."),
+  check("authors").notEmpty().withMessage("Please add authors."),
+  check("pages")
+    .isInt()
+    .withMessage("Only natural number is allowed Ex:102,48 "),
+  check("price")
+    .isInt()
+    .withMessage("Only natural number is allowed Ex:628,148 "),
+  check("release").isDate().withMessage("Please add a valid date."),
+  check("category").notEmpty().withMessage("Please check a category"),
+  check("bookCoverImg").notEmpty().withMessage("Please add an image."),
+];
 
 exports.createNewCategoryGet = (req, res) => {
   res.render("pages/new-category", {
@@ -51,11 +68,31 @@ exports.createNewItemGet = async (req, res) => {
   res.render("pages/new-items", {
     pageTitle: "Create Category",
     categories: rows,
+    validateErrors: [],
+    result: null,
   });
 };
 
 exports.createNewItemPost = [
+  validateNewItem,
   async (req, res) => {
+    // Get category item from category table
+    let { rows } = await categoriesDb.getAllCategories();
+    if (rows.length > 0) {
+      rows = rows.map(({ id, name }) => ({ id, name }));
+    }
+
+    const error = validationResult(req);
+
+    if (!error.isEmpty()) {
+      //helper.filterErrorMsg(error["errors"], "name");
+      return res.status(400).render("pages/new-items", {
+        pageTitle: "Create Category",
+        categories: rows,
+        validateErrors: error["errors"],
+        helperFunctions: helper,
+      });
+    }
     console.log(req.body);
   },
 ];
