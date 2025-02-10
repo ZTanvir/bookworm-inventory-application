@@ -31,9 +31,7 @@
             cols="30"
             rows="10"
           >
-<% if(Object.keys(formdata).length>0){%>
- <%= formdata["descriptions"] %>"
-<%}%></textarea
+<%= Boolean(formdata["descriptions"])?formdata["descriptions"]:"" %></textarea
           >
           <p class="error-msg">
             <%if(validateErrors.length>0){%> <%=
@@ -142,11 +140,11 @@
       return totalCheckedCheckbox < 1;
     }
 
-    if (checkboxesEl.length > 0) {
-      checkboxesEl.forEach((checkBox) => {
-        checkBox.addEventListener("change", validateCheckbox);
-      });
-    }
+    // if (checkboxesEl.length > 0) {
+    //   checkboxesEl.forEach((checkBox) => {
+    //     checkBox.addEventListener("change", validateCheckbox);
+    //   });
+    // }
     // validateCheckbox();
 
     // itemFormEl.addEventListener("submit", (event) => {
