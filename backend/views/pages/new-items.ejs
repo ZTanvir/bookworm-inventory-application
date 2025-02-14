@@ -12,7 +12,12 @@
     <header><%- include("../layout/navbar") %></header>
     <main>
       <h1>Create Item</h1>
-      <form id="item-form" action="/inventory/item/create" method="post">
+      <form
+        id="item-form"
+        action="/inventory/item/create"
+        method="post"
+        enctype="multipart/form-data"
+      >
         <div>
           <label for="book-name">Name*:</label>
           <input type="text" value="<%= formdata["name"] %>" name="name"

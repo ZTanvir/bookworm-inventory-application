@@ -94,6 +94,7 @@ exports.createNewItemPost = [
         formdata: req.body,
       });
     }
-    console.log(req.body);
+    console.log("body data:", req.body);
+    console.log("file data", req.file);
   },
 ];
