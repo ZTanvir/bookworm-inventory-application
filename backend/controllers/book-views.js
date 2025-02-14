@@ -3,9 +3,17 @@ const helper = require("../utils/helper");
 const { check, validationResult } = require("express-validator");
 
 const validateNewItem = [
-  check("name").notEmpty().withMessage("Please add a name."),
-  check("descriptions").notEmpty().withMessage("Please add descriptions."),
-  check("authors").notEmpty().withMessage("Please add authors."),
+  check("name").notEmpty().withMessage("Please add a name.").trim().escape(),
+  check("descriptions")
+    .notEmpty()
+    .withMessage("Please add descriptions.")
+    .trim()
+    .escape(),
+  check("authors")
+    .notEmpty()
+    .withMessage("Please add authors.")
+    .trim()
+    .escape(),
   check("pages")
     .isInt()
     .withMessage("Only natural number is allowed Ex:102,48 "),
