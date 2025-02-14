@@ -86,7 +86,6 @@ exports.createNewItemPost = [
     const error = validationResult(req);
 
     if (!error.isEmpty()) {
-      //helper.filterErrorMsg(error["errors"], "name");
       return res.status(400).render("pages/new-items", {
         pageTitle: "Create Category",
         categories: rows,

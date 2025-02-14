@@ -39,6 +39,7 @@
             <%} %>
           </p>
         </div>
+
         <div>
           <label for="book-authors">Authors*:</label>
           <input type="text" name="authors" value="<%= formdata["authors"] %>"
@@ -48,6 +49,7 @@
             helperFunctions.filterErrorMsg(validateErrors, "authors" )%> <%} %>
           </p>
         </div>
+
         <div>
           <label for="book-pages">Pages*:</label>
           <input type="number" name="pages" value="<%= formdata["pages"] %>"
@@ -57,6 +59,7 @@
             helperFunctions.filterErrorMsg(validateErrors, "pages" )%> <%} %>
           </p>
         </div>
+
         <div>
           <label for="book-price">Price*:</label>
           <input type="number" name="price" value="<%= formdata["price"] %>"
@@ -66,17 +69,15 @@
             helperFunctions.filterErrorMsg(validateErrors, "price" )%> <%} %>
           </p>
         </div>
+
         <div class="categories">
           <p class="categories-title">Categories*:</p>
           <!-- Generate checkbox based on categories table in the db -->
           <% if (categories.length>0) { %> <% categories.forEach(element=> { %>
           <div>
-            <input
-              type="checkbox"
-              name="category"
-              id="category<%=element.id%>"
-              value="<%= element.id%>"
-            />
+            <input type="checkbox" name="category" <%=formdata["category"] &&
+            formdata["category"].includes(`${element.id}`) && "checked" %>
+            id="category<%=element.id%>" value="<%= element.id%>" />
             <label for="category<%=element.id%>"> <%=element.name%> </label>
           </div>
           <% }) %>
