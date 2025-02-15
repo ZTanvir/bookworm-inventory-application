@@ -22,7 +22,6 @@ const validateNewItem = [
     .withMessage("Only natural number is allowed Ex:628,148 "),
   check("release").isDate().withMessage("Please add a valid date."),
   check("category").notEmpty().withMessage("Please check a category"),
-  check("bookCoverImg").notEmpty().withMessage("Please add an image."),
 ];
 
 exports.createNewCategoryGet = (req, res) => {
@@ -92,7 +91,18 @@ exports.createNewItemPost = [
     }
 
     const error = validationResult(req);
+    console.log(error);
 
+    // add this custom error msg if cover image file not found
+    if (!req.file) {
+      error["errors"].push({
+        type: "field",
+        value: "",
+        msg: "Please select a cover image.",
+        path: "bookCoverImg",
+        location: "body",
+      });
+    }
     if (!error.isEmpty()) {
       return res.status(400).render("pages/new-items", {
         pageTitle: "Create Category",
@@ -102,7 +112,7 @@ exports.createNewItemPost = [
         formdata: req.body,
       });
     }
-    console.log("body data:", req.body);
-    console.log("file data", req.file);
+    // store D
+    return res.redirect("/");
   },
 ];
