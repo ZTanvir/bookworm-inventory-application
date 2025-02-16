@@ -1,5 +1,7 @@
 const categoriesDb = require("../db/categoriesQuery");
 const helper = require("../utils/helper");
+const bookQuery = require("../db/bookquery");
+const logger = require("../utils/logger");
 const { check, validationResult } = require("express-validator");
 
 const validateNewItem = [
@@ -89,10 +91,9 @@ exports.createNewItemPost = [
     if (rows.length > 0) {
       rows = rows.map(({ id, name }) => ({ id, name }));
     }
+    console.log(req.body);
 
     const error = validationResult(req);
-    console.log(error);
-
     // add this custom error msg if cover image file not found
     if (!req.file) {
       error["errors"].push({
@@ -112,7 +113,39 @@ exports.createNewItemPost = [
         formdata: req.body,
       });
     }
-    // store D
-    return res.redirect("/");
+    console.log(req.body);
+    console.log(req.file);
+    let { name, descriptions, authors, pages, price, release } = req.body;
+    let { category } = req.body;
+    // single checkbox category value also store in array
+    category = !category.length >= 0 && [...category];
+    const cover_img_src = req.file.path;
+    //  store form value in database
+    // add book to books table
+    await bookQuery.insertBook(
+      name,
+      descriptions,
+      authors,
+      pages,
+      release,
+      price,
+      cover_img_src
+    );
+    // get the book id from books table
+    let bookId = null;
+    try {
+      const result = await bookQuery.findBookByName(name);
+      bookId = result[0].id;
+    } catch (error) {
+      console.error("Error when searching for book id", error);
+    }
+
+    // get the category id from categories table
+    /* as we directly pass the category id value to our input checkbox field so
+      we don't need to reassure it again by searching to the category table
+    */
+    // store book id and category id to book_categories
+
+    // return res.redirect("/");
   },
 ];
