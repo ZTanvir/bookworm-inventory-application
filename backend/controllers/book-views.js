@@ -91,7 +91,6 @@ exports.createNewItemPost = [
     if (rows.length > 0) {
       rows = rows.map(({ id, name }) => ({ id, name }));
     }
-    console.log(req.body);
 
     const error = validationResult(req);
     // add this custom error msg if cover image file not found
@@ -113,8 +112,7 @@ exports.createNewItemPost = [
         formdata: req.body,
       });
     }
-    console.log(req.body);
-    console.log(req.file);
+
     let { name, descriptions, authors, pages, price, release } = req.body;
     let { category } = req.body;
     // single checkbox category value also store in array
@@ -122,30 +120,47 @@ exports.createNewItemPost = [
     const cover_img_src = req.file.path;
     //  store form value in database
     // add book to books table
-    await bookQuery.insertBook(
-      name,
-      descriptions,
-      authors,
-      pages,
-      release,
-      price,
-      cover_img_src
-    );
+    try {
+      await bookQuery.insertBook(
+        name,
+        descriptions,
+        authors,
+        pages,
+        release,
+        price,
+        cover_img_src
+      );
+    } catch (error) {
+      logger.error("Error when add book to books table:");
+    }
     // get the book id from books table
     let bookId = null;
     try {
       const result = await bookQuery.findBookByName(name);
       bookId = result[0].id;
     } catch (error) {
-      console.error("Error when searching for book id", error);
+      console.error("Error when searching for book id in books table:", error);
     }
 
     // get the category id from categories table
     /* as we directly pass the category id value to our input checkbox field so
       we don't need to reassure it again by searching to the category table
     */
-    // store book id and category id to book_categories
-
+    // store book id and category id to book_categories table
+    if (category.length > 0) {
+      let allRequest = [];
+      for (const item of category) {
+        allRequest.push(await bookQuery.addBookToCategory(bookId, item));
+      }
+      try {
+        await Promise.all(allRequest);
+      } catch (error) {
+        logger.error(
+          "Error when adding book id and category id to book_categories table:",
+          error
+        );
+      }
+    }
     // return res.redirect("/");
   },
 ];

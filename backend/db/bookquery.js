@@ -30,4 +30,11 @@ const findBookByName = async (name) => {
   return rows;
 };
 
-module.exports = { insertBook, findBookByName };
+const addBookToCategory = async (bookId, categoryId) => {
+  await pool.query(
+    `INSERT INTO book_categories(book_id,category_id) VALUES ($1,$2)`,
+    [bookId, categoryId]
+  );
+};
+
+module.exports = { insertBook, findBookByName, addBookToCategory };
