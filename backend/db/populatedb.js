@@ -26,6 +26,23 @@ CREATE TABLE IF NOT EXISTS book_categories(
   CONSTRAINT fk_book FOREIGN KEY(book_id) REFERENCES books(id) ON DELETE CASCADE,
   CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
+
+CREATE OR REPLACE VIEW book_categories_view AS
+SELECT 
+  books.id,
+  books.name as book_name,
+  description,
+  authors,
+  number_of_pages,
+  released,
+  price,
+  books.cover_img_src,
+  categories.name as category_name
+FROM 
+  books 
+  FULL JOIN book_categories ON books.id = book_categories.book_id 
+  FULL JOIN categories ON book_categories.category_id = categories.id
+;
 `;
 
 const connectionString = config.dbConnectionInfo;

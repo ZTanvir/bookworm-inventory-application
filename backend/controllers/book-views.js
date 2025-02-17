@@ -161,6 +161,6 @@ exports.createNewItemPost = [
         );
       }
     }
-    // return res.redirect("/");
+    return res.redirect("/");
   },
 ];

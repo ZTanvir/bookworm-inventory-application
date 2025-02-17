@@ -37,4 +37,8 @@ const addBookToCategory = async (bookId, categoryId) => {
   );
 };
 
+// join 3 table query
+`
+SELECT books.name,categories.name FROM books FULL JOIN book_categories ON books.id = book_categories.book_id FULL JOIN categories ON book_categories.category_id = categories.id;`;
+
 module.exports = { insertBook, findBookByName, addBookToCategory };
