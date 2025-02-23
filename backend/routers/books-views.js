@@ -29,5 +29,6 @@ bookViews.post(
 );
 
 bookViews.get("/items", bookViewsController.getAllItems);
+bookViews.get("/items/:id", bookViewsController.getSingleItem);
 
 module.exports = bookViews;

@@ -42,4 +42,18 @@ const getItems = async () => {
   return rows;
 };
 
-module.exports = { insertBook, findBookByName, addBookToCategory, getItems };
+const getSingleItem = async (bookId) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM book_categories_view WHERE id=$1",
+    [bookId]
+  );
+  return rows;
+};
+
+module.exports = {
+  insertBook,
+  findBookByName,
+  addBookToCategory,
+  getItems,
+  getSingleItem,
+};

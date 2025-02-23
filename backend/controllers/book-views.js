@@ -177,3 +177,10 @@ exports.getAllItems = async (req, res) => {
     itemList: result,
   });
 };
+
+exports.getSingleItem = async (req, res) => {
+  const bookId = req.params.id;
+  const bookData = await bookQuery.getSingleItem(bookId);
+
+  return res.json(bookData);
+};
