@@ -1,0 +1,43 @@
+.items__wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+}
+.item__wrapper {
+  overflow: hidden;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.item__image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 1;
+}
+.item__title {
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.add-item-msg {
+  font-size: 3rem;
+}
+.items_add-link {
+  color: var(--link-black, rgb(27, 27, 27));
+}
+.items_add-link:hover,
+.items_add-link:focus {
+  color: var(--link-gray, rgb(83, 82, 82));
+}

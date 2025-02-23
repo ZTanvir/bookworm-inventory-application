@@ -168,3 +168,12 @@ exports.createNewItemPost = [
     return res.redirect("/");
   },
 ];
+
+exports.getAllItems = async (req, res) => {
+  const result = await bookQuery.getItems();
+
+  res.status(200).render("../views/pages/items", {
+    title: "All items",
+    itemList: result,
+  });
+};

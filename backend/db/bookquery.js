@@ -37,4 +37,9 @@ const addBookToCategory = async (bookId, categoryId) => {
   );
 };
 
-module.exports = { insertBook, findBookByName, addBookToCategory };
+const getItems = async () => {
+  const { rows } = await pool.query("SELECT * FROM books");
+  return rows;
+};
+
+module.exports = { insertBook, findBookByName, addBookToCategory, getItems };

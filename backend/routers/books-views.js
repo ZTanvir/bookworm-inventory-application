@@ -28,4 +28,6 @@ bookViews.post(
   bookViewsController.createNewItemPost
 );
 
+bookViews.get("/items", bookViewsController.getAllItems);
+
 module.exports = bookViews;
