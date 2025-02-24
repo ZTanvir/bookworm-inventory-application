@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../public/styles/css-reset.css" />
+    <link rel="stylesheet" href="../../public/styles/item-description.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header><%- include("../layout/navbar") %></header>
+    <main>
+      <% if (bookData) { %> <% bookData.forEach(book => { %>
+      <div class="book__wrapper">
+        <img class="book__img" src="/<%=book.cover_img_src%>" alt="" />
+        <div class="book__information">
+          <h1 class="book__title"><%= book.book_name %></h1>
+          <p class="book__price">$<%=book.price %></p>
+          <div class="book__category">
+            <% book.category_name.forEach(category => { %>
+            <a
+              class="book__category__link"
+              href="/inventory/categories/<%=category.id%>"
+            >
+              <span class="book__category__title"><%=category.value %></span>
+            </a>
+            <% }) %>
+          </div>
+          <p class="book__pages">
+            <span class="book__pages-bold">Page: </span><%=book.number_of_pages
+            %>
+          </p>
+          <p class="book__authors">
+            <span class="book__authors-bold">Authors: </span><%=book.authors %>
+          </p>
+          <p class="book__releaseDate">
+            <span class="book__releaseDate-bold">Released:</span>
+            <%=book.released.toDateString() %>
+          </p>
+          <p class="book__descriptions"><%=book.description %></p>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </main>
+  </body>
+</html>

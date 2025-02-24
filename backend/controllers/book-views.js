@@ -180,7 +180,20 @@ exports.getAllItems = async (req, res) => {
 
 exports.getSingleItem = async (req, res) => {
   const bookId = req.params.id;
-  const bookData = await bookQuery.getSingleItem(bookId);
+  let bookData = await bookQuery.getSingleItem(bookId);
 
-  return res.json(bookData);
+  const title = bookData[0].book_name;
+
+  // store category in a group
+  const groupCategory = [];
+  bookData.forEach((item) =>
+    groupCategory.push({ id: item.category_id, value: item.category_name })
+  );
+  delete bookData[0].category_id;
+  bookData = [{ ...bookData[0], category_name: groupCategory }];
+
+  return res.status(200).render("../views/pages/item-descriptions", {
+    title,
+    bookData,
+  });
 };

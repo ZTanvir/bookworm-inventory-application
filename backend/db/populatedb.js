@@ -37,7 +37,8 @@ SELECT
   released,
   price,
   books.cover_img_src,
-  categories.name as category_name
+  categories.name as category_name,
+  categories.id as category_id
 FROM 
   books 
   FULL JOIN book_categories ON books.id = book_categories.book_id 
