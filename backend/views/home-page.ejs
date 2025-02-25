@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/styles/css-reset.css" />
+    <link rel="stylesheet" href="../public/styles/home-page.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header><%- include("./layout/navbar") %></header>
+    <main id="home-page">
+      <div class="hero-section">
+        <img
+          class="hero-section__img"
+          src="../public/assets/book-hero-section.jpg"
+          alt="A table where different types of book are present."
+        />
+        <div class="hero-section__info">
+          <h2 class="hero-section__title">Featured Categories</h2>
+          <p class="hero-section__subtitle">
+            Dive Deep Into Your Book Collection.
+          </p>
+          <a class="hero-section__link" href="inventory/categories">
+            <button class="hero-section__btn">Explore categories</button>
+          </a>
+        </div>
+      </div>
+      <div class="feature-categories">
+        <img class="feature-categories__img" src="" alt="" />
+        <div class="feature-categories__info">
+          <h2>Featured Categories</h2>
+        </div>
+      </div>
+      <div class="feature-books">
+        <img
+          class="feature-books__img"
+          src="../public/assets/book-reading.jpg"
+        />
+        <div class="feature-books__info">
+          <h2>Featured Book</h2>
+          <% if (books.length>0) { %>
+          <div class="feature-books__info__wrapper">
+            <% books.forEach(book => { %>
+            <a
+              class="feature-books__link"
+              href="/inventory/items/<%= book.id %>"
+              ><section class="card">
+                <img
+                  class="card-img feature-books__info-img"
+                  src="<%=book.cover_img_src  %>"
+                />
+                <p class="card-title feature-books__title"><%=book.name %></p>
+              </section></a
+            >
+            <% }) %>
+          </div>
+          <% }else{ %>
+          <h3>No books found.Please add one from here.</h3>
+          <% } %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

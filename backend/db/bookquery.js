@@ -50,10 +50,16 @@ const getSingleItem = async (bookId) => {
   return rows;
 };
 
+const getLimitedBook = async (limit) => {
+  const { rows } = await pool.query("SELECT * FROM books LIMIT $1 ", [limit]);
+  return rows;
+};
+
 module.exports = {
   insertBook,
   findBookByName,
   addBookToCategory,
   getItems,
   getSingleItem,
+  getLimitedBook,
 };
