@@ -1,4 +1,7 @@
 #home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .hero-section {
   position: relative;
@@ -35,16 +38,21 @@
   text-decoration: none;
   color: black;
 }
-.feature-books {
+.feature-books,
+.feature-categories {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
   gap: 2rem;
 }
-.feature-books__img {
+.feature-books__title,
+.feature-books__title {
+  font-size: 2rem;
+}
+.feature-books__img,
+.feature-categories__img {
   max-height: 500px;
   object-fit: cover;
   border-radius: 1rem;
@@ -60,8 +68,8 @@
   object-fit: cover;
 }
 .feature-books__info {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(autofill, minmax(200px, 1fr));
 }
 .card {
   max-height: 200px;
@@ -70,7 +78,8 @@
   position: relative;
 }
 .card-img {
-  object-fit: contain;
+  object-fit: cover;
+  width: 100%;
 }
 .card-title {
   text-align: center;

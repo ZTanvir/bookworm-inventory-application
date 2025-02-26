@@ -38,6 +38,13 @@ const getCategoryItems = async (categoryName) => {
   return rows;
 };
 
+const getLimitedCategory = async (count) => {
+  const { rows } = await pool.query("SELECT * FROM categories LIMIT $1", [
+    count,
+  ]);
+  return rows;
+};
+
 module.exports = {
   getAllCategories,
   addCategory,
@@ -45,4 +52,5 @@ module.exports = {
   updateCategory,
   deleteCategory,
   getCategoryItems,
+  getLimitedCategory,
 };
