@@ -79,6 +79,10 @@ body {
   z-index: 5;
   width: 100%;
   backdrop-filter: blur(10px);
+  margin-bottom: 1rem;
+}
+header {
+  margin-top: 6rem;
 }
 .navbar > ul {
   padding: 0;

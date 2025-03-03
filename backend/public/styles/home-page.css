@@ -38,6 +38,12 @@
   text-decoration: none;
   color: black;
 }
+.feature-books {
+  background-color: #ececec;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .feature-books,
 .feature-categories {
   max-width: 1200px;
