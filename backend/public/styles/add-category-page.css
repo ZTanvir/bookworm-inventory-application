@@ -64,6 +64,10 @@ button[type="submit"]:hover {
 }
 /* TABLET VERSION */
 @media only screen and (min-width: 768px) and (max-width: 979px) {
+  #add-book-category-form {
+    padding: 1rem;
+    width: 100%;
+  }
 }
 /* DESKTOP VERSION */
 @media only screen and (min-width: 980px) {

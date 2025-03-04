@@ -60,35 +60,37 @@
           alt="Book stack on top of one another."
         />
       </div>
-      <div class="feature-books">
-        <img
-          class="feature-books__img"
-          src="../public/assets/book-reading.jpg"
-        />
-        <div class="feature-books__info">
-          <h2 class="feature-books__title">Featured Book</h2>
-          <% if (books.length>0) { %>
-          <div class="feature-books__info__wrapper">
-            <% books.forEach(book => { %>
-            <a
-              class="feature-books__link"
-              href="/inventory/items/<%= book.id %>"
-              ><section class="card">
-                <img
-                  class="card-img feature-books__info-img"
-                  src="<%=book.cover_img_src  %>"
-                />
-                <p class="card-title feature-books__title"><%=book.name %></p>
-              </section></a
-            >
-            <% }) %>
+      <div class="feature-books__container">
+        <div class="feature-books">
+          <img
+            class="feature-books__img"
+            src="../public/assets/book-reading.jpg"
+          />
+          <div class="feature-books__info">
+            <h2 class="feature-books__title">Featured Book</h2>
+            <% if (books.length>0) { %>
+            <div class="feature-books__info__wrapper">
+              <% books.forEach(book => { %>
+              <a
+                class="feature-books__link"
+                href="/inventory/items/<%= book.id %>"
+                ><section class="card">
+                  <img
+                    class="card-img feature-books__info-img"
+                    src="<%=book.cover_img_src  %>"
+                  />
+                  <p class="card-title feature-books__title"><%=book.name %></p>
+                </section></a
+              >
+              <% }) %>
+            </div>
+            <% }else{ %>
+            <h3>
+              No books found.Please add one from
+              <a href="/inventory/item/create">here</a>.
+            </h3>
+            <% } %>
           </div>
-          <% }else{ %>
-          <h3>
-            No books found.Please add one from
-            <a href="/inventory/item/create">here</a>.
-          </h3>
-          <% } %>
         </div>
       </div>
     </main>

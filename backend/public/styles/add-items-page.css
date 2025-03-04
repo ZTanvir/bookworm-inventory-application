@@ -53,6 +53,10 @@ main > h1 {
 }
 /* TABLET VERSION */
 @media only screen and (min-width: 768px) and (max-width: 979px) {
+  #item-form {
+    padding: 1rem;
+    max-width: 100%;
+  }
 }
 /* DESKTOP VERSION */
 @media only screen and (min-width: 980px) {

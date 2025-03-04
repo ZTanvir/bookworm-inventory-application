@@ -39,7 +39,6 @@
   color: black;
 }
 .feature-books {
-  background-color: #ececec;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -115,7 +114,27 @@
 }
 /* TABLET VERSION */
 @media only screen and (min-width: 768px) and (max-width: 979px) {
+  .feature-categories {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+  }
+  .feature-books {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+  }
 }
 /* DESKTOP VERSION */
 @media only screen and (min-width: 980px) {
+  .feature-categories {
+    padding: 1rem;
+  }
+  .feature-books__container {
+    max-width: none;
+    background-color: #ececec;
+  }
+  .feature-books {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
 }

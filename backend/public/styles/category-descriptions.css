@@ -57,7 +57,16 @@
 }
 /* TABLET VERSION */
 @media only screen and (min-width: 768px) and (max-width: 979px) {
+  .category-details-page {
+    padding: 1rem;
+  }
+  .books-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 /* DESKTOP VERSION */
 @media only screen and (min-width: 980px) {
+  .category-details-page {
+    padding: 1rem;
+  }
 }
