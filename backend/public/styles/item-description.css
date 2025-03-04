@@ -40,3 +40,25 @@
   font-weight: 800;
   font-size: 1.1rem;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .book__wrapper {
+    padding: 1rem;
+  }
+  .book__wrapper {
+    flex-direction: column;
+  }
+  .book__img {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+  .book__information {
+    flex-basis: 100%;
+  }
+}
+/* TABLET VERSION */
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+}
+/* DESKTOP VERSION */
+@media only screen and (min-width: 980px) {
+}

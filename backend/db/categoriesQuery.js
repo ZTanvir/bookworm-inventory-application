@@ -32,7 +32,7 @@ const deleteCategory = async (categoryId) => {
 
 const getCategoryItems = async (categoryName) => {
   const { rows } = await pool.query(
-    "SELECT book_name,cover_img_src FROM book_categories_view WHERE category_name = $1",
+    "SELECT id,book_name,cover_img_src FROM book_categories_view WHERE category_name = $1",
     [categoryName]
   );
   return rows;

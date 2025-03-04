@@ -24,10 +24,17 @@
       <h3 class="items-title">Items</h3>
       <div class="books-wrapper">
         <% items.forEach(book=>{%>
-        <section class="book-container">
-          <p class="book-name"><%=book.book_name%></p>
-          <img class="book-cover-img" src="/<%=book.cover_img_src %>" alt="" />
-        </section>
+        <a href="/inventory/items/<%=book.id %>">
+          <section class="book-container">
+            <p class="book-name"><%=book.book_name%></p>
+            <img
+              class="book-cover-img"
+              src="/<%=book.cover_img_src %>"
+              alt=""
+            />
+          </section>
+        </a>
+
         <% }) %> <%} %>
       </div>
       <% }else{ %>
