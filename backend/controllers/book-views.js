@@ -69,7 +69,7 @@ exports.getSingleCategory = async (req, res) => {
     res.render("pages/category-descriptions", {
       pageTitle: "Not found",
       categoryDetails: [],
-      errorMessage: "Item not found.",
+      errorMessage: "Category not found.",
     });
   }
 };
@@ -183,20 +183,29 @@ exports.getAllItems = async (req, res) => {
 
 exports.getSingleItem = async (req, res) => {
   const bookId = req.params.id;
-  let bookData = await bookQuery.getSingleItem(bookId);
 
-  const title = bookData[0].book_name;
+  try {
+    let bookData = await bookQuery.getSingleItem(bookId);
 
-  // store category in a group
-  const groupCategory = [];
-  bookData.forEach((item) =>
-    groupCategory.push({ id: item.category_id, value: item.category_name })
-  );
-  delete bookData[0].category_id;
-  bookData = [{ ...bookData[0], category_name: groupCategory }];
+    const title = bookData[0].book_name;
 
-  return res.status(200).render("../views/pages/item-descriptions", {
-    title,
-    bookData,
-  });
+    // store category in a group
+    const groupCategory = [];
+    bookData.forEach((item) =>
+      groupCategory.push({ id: item.category_id, value: item.category_name })
+    );
+    delete bookData[0].category_id;
+    bookData = [{ ...bookData[0], category_name: groupCategory }];
+
+    return res.status(200).render("../views/pages/item-descriptions", {
+      title,
+      bookData,
+    });
+  } catch (error) {
+    return res.status(200).render("../views/pages/item-descriptions", {
+      title: "Not found",
+      bookData: [],
+      errorMessage: "Item not found.",
+    });
+  }
 };
