@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const path = require("path");
-const bookRouters = require("./routers/book");
-const bookCategories = require("./routers/category");
 const bookViews = require("./routers/books-views");
 const bookQuery = require("./db/bookquery");
 const categoriesQuery = require("./db/categoriesQuery");
@@ -17,8 +15,6 @@ app.set("view engine", "ejs");
 
 app.use(morgan("tiny"));
 
-app.use("/api", bookRouters);
-app.use("/api", bookCategories);
 app.use("/inventory", bookViews);
 
 app.get("/", async (req, res) => {
