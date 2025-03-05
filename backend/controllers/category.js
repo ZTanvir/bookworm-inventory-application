@@ -39,7 +39,7 @@ const addCategory = [
       categoryDescription,
       coverImageSrc
     );
-    res.redirect("/");
+    res.redirect("/inventory/categories");
   },
 ];
 
