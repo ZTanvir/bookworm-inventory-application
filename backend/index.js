@@ -27,4 +27,10 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.all("*", (req, res) => {
+  res.render("pages/page-not-found", {
+    title: "Page not found",
+  });
+});
+
 module.exports = app;

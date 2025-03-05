@@ -1,0 +1,12 @@
+#page-not-found__page {
+}
+#page-not-found__page > main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-not-found__img {
+  max-width: 70%;
+}

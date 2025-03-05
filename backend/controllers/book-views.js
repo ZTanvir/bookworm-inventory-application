@@ -51,17 +51,21 @@ exports.getAllCategories = async (req, res) => {
 exports.getSingleCategory = async (req, res) => {
   // call db for a book categories details
   const categoryId = req.params.id;
-  const { rows } = await categoriesDb.getSingleCategory(categoryId);
-  const items = await categoriesDb.getCategoryItems(rows[0].name);
+  try {
+    const { rows } = await categoriesDb.getSingleCategory(categoryId);
+    console.log("db rows", rows.length);
 
-  if (rows.length > 0) {
-    const pageTitle = rows[0].name;
-    res.render("pages/category-descriptions", {
-      pageTitle,
-      categoryDetails: rows,
-      items,
-    });
-  } else {
+    const items = await categoriesDb.getCategoryItems(rows[0].name);
+
+    if (rows.length > 0) {
+      const pageTitle = rows[0].name;
+      res.render("pages/category-descriptions", {
+        pageTitle,
+        categoryDetails: rows,
+        items,
+      });
+    }
+  } catch (error) {
     res.render("pages/category-descriptions", {
       pageTitle: "Not found",
       categoryDetails: [],

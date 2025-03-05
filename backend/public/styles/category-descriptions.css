@@ -47,6 +47,11 @@
   width: 100%;
   border-radius: 1rem;
 }
+.category-error-message {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   .category-details-page {
     padding: 1rem;
