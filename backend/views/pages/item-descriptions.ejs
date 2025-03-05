@@ -15,7 +15,7 @@
   <body>
     <header><%- include("../layout/navbar") %></header>
     <main>
-      <% if (bookData) { %> <% bookData.forEach(book => { %>
+      <% if (bookData.length > 0) { %> <% bookData.forEach(book => { %>
       <div class="book__wrapper">
         <img class="book__img" src="/<%=book.cover_img_src%>" alt="" />
         <div class="book__information">
@@ -45,7 +45,9 @@
           <p class="book__descriptions"><%=book.description %></p>
         </div>
       </div>
-      <% }) %> <% } %>
+      <% }) %> <% }else{ %>
+      <h1 class="error-item-not-found"><%=errorMessage %></h1>
+      <% } %>
     </main>
   </body>
 </html>
