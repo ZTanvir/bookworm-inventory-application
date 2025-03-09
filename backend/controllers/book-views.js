@@ -53,7 +53,6 @@ exports.getSingleCategory = async (req, res) => {
   const categoryId = req.params.id;
   try {
     const { rows } = await categoriesDb.getSingleCategory(categoryId);
-    console.log("db rows", rows.length);
 
     const items = await categoriesDb.getCategoryItems(rows[0].name);
 

@@ -24,8 +24,6 @@ const getSingleCategory = async (req, res, next) => {
 const addCategory = [
   validateCategory,
   async (req, res, next) => {
-    console.log("/category/new");
-
     const { categoryName, categoryDescription } = req.body;
     const coverImageSrc = req.file.path;
     const errors = validationResult(req);
@@ -52,9 +50,14 @@ const updateCategory = async (req, res, next) => {
   res.sendStatus(200);
 };
 
+const deleteCategory = async (req, res, next) => {
+  const itemId = req.params.id;
+};
+
 module.exports = {
   getAllCategories,
   getSingleCategory,
   addCategory,
   updateCategory,
+  deleteCategory,
 };

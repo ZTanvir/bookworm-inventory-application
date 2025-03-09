@@ -22,7 +22,13 @@
       {%>
       <section class="category-details-wrapper">
         <img class="category-image" src="/<%= item.cover_img_src%>" alt="" />
-        <h2 class="category-title"><%= item.name %></h2>
+        <div>
+          <h2 class="category-title"><%= item.name %></h2>
+          <div class="edit-delete__container">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+        </div>
         <p class="category-descriptions"><%= item.descriptions %></p>
       </section>
       <%}); %> <%if(items.length>0){ %>
@@ -42,9 +48,36 @@
 
         <% }) %> <%} %>
       </div>
+      <dialog>
+        <div class="modal__container">
+          <h3>Are you sure?</h3>
+          <div>
+            <button class="yes-btn">Yes</button>
+            <button class="no-btn">No</button>
+          </div>
+        </div>
+      </dialog>
       <% }else{ %>
       <h2 class="category-error-message"><%=errorMessage %></h2>
       <%} %>
     </main>
+
+    <script>
+      const dialog = document.querySelector("dialog");
+      const editBtn = document.querySelector(".edit-btn");
+      const deleteBtn = document.querySelector(".delete-btn");
+      const yesBtn = document.querySelector(".yes-btn");
+      const noBtn = document.querySelector(".no-btn");
+
+      deleteBtn.addEventListener("click", (e) => {
+        dialog.showModal();
+      });
+      yesBtn.addEventListener("click", (e) => {
+        dialog.close();
+      });
+      noBtn.addEventListener("click", (e) => {
+        dialog.close();
+      });
+    </script>
   </body>
 </html>
