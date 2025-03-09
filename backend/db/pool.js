@@ -55,10 +55,11 @@ async function main() {
   });
 
   await client.connect();
+  const { rows } = await client.query("SELECT version()");
+  console.log(rows[0].version);
+  console.log("Connected to db.");
   await client.query(sql);
   await client.end();
-
-  console.log("done");
 }
 
 main();
