@@ -24,6 +24,8 @@ const getSingleCategory = async (req, res, next) => {
 const addCategory = [
   validateCategory,
   async (req, res, next) => {
+    console.log("/category/new");
+
     const { categoryName, categoryDescription } = req.body;
     const coverImageSrc = req.file.path;
     const errors = validationResult(req);

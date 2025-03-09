@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const path = require("path");
 const bookViews = require("./routers/books-views");
 const bookQuery = require("./db/bookquery");
+const categoryRoute = require("./routers/category");
 const categoriesQuery = require("./db/categoriesQuery");
 
 app.use(express.urlencoded({ extended: true }));
@@ -16,6 +17,7 @@ app.set("view engine", "ejs");
 app.use(morgan("tiny"));
 
 app.use("/inventory", bookViews);
+app.use("/inventory", categoryRoute);
 
 app.get("/", async (req, res) => {
   const books = await bookQuery.getLimitedBook(4);

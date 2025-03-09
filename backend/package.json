@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "cross-env NODE_ENV=production node app.js",
+    "dev:local":"cross-env NODE_ENV=developmentLocal nodemon app.js",
+    "dev:vercel":"cross-env NODE_ENV=developmentVercel nodemon app.js"
   },
   "repository": {
     "type": "git",
