@@ -59,7 +59,6 @@ async function main() {
   console.log(rows[0].version);
   console.log("Connected to db.");
   await client.query(sql);
-  await client.end();
 }
 
 main();
