@@ -15,6 +15,11 @@
   flex-direction: column;
   gap: 0.75rem;
 }
+.book__category {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
 .book__category__link {
   background-color: #ddf4ff;
   color: #0969da;
