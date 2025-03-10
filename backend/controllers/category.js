@@ -1,4 +1,5 @@
 const categoriesQuery = require("../db/categoriesQuery");
+const bookQuery = require("../db/bookquery");
 const { body, validationResult } = require("express-validator");
 
 // Validate category
@@ -52,6 +53,23 @@ const updateCategory = async (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
   const itemId = req.params.id;
+  const booksDeleteQuery = [];
+  try {
+    // get all the book id that belongs to that category
+    const booksId = await bookQuery.getBookIdByCategory(itemId);
+
+    booksId.forEach((book) => booksDeleteQuery.push(book.book_id));
+    // delete the category
+    await categoriesQuery.deleteCategory(itemId);
+    // delete all books that belong to that category
+    for (let index = 0; index < booksDeleteQuery.length; index++) {
+      console.log(booksDeleteQuery[index]);
+      await bookQuery.deleteBook(booksDeleteQuery[index]);
+    }
+    res.sendStatus(200);
+  } catch (error) {
+    console.log("Error on deleteCategory", error);
+  }
 };
 
 module.exports = {

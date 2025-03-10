@@ -72,7 +72,23 @@
       deleteBtn.addEventListener("click", (e) => {
         dialog.showModal();
       });
-      yesBtn.addEventListener("click", (e) => {
+      yesBtn.addEventListener("click", async (e) => {
+        console.log("Yes clicked");
+        try {
+          const response = await fetch(
+            "/inventory/category/delete/<%=categoryDetails[0].id %>",
+            {
+              method: "delete",
+            }
+          );
+          if (response.status === 200) {
+            window.location.href = "/";
+          }
+          console.log("response", response);
+        } catch (error) {
+          console.log("Error on deleting category item: " + err);
+        }
+
         dialog.close();
       });
       noBtn.addEventListener("click", (e) => {

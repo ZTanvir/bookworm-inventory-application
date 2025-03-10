@@ -55,6 +55,18 @@ const getLimitedBook = async (limit) => {
   return rows;
 };
 
+const deleteBook = async (bookId) => {
+  await pool.query("DELETE FROM books WHERE id = $1", [bookId]);
+};
+
+const getBookIdByCategory = async (categoryId) => {
+  const { rows } = await pool.query(
+    "SELECT book_id FROM book_categories WHERE category_id = $1",
+    [categoryId]
+  );
+  return rows;
+};
+
 module.exports = {
   insertBook,
   findBookByName,
@@ -62,4 +74,6 @@ module.exports = {
   getItems,
   getSingleItem,
   getLimitedBook,
+  deleteBook,
+  getBookIdByCategory,
 };
