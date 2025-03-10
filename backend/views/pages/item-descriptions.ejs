@@ -19,7 +19,10 @@
       <div class="book__wrapper">
         <img class="book__img" src="/<%=book.cover_img_src%>" alt="" />
         <div class="book__information">
-          <h1 class="book__title"><%= book.book_name %></h1>
+          <div>
+            <h1 class="book__title"><%= book.book_name %></h1>
+            <button class="delete-btn">Delete</button>
+          </div>
           <p class="book__price">$<%=book.price %></p>
           <div class="book__category">
             <% book.category_name.forEach(category => { %>
@@ -44,10 +47,51 @@
           </p>
           <p class="book__descriptions"><%=book.description %></p>
         </div>
+        <dialog>
+          <div class="modal__container">
+            <h3>Are you sure?</h3>
+            <div>
+              <button class="yes-btn">Yes</button>
+              <button class="no-btn">No</button>
+            </div>
+          </div>
+        </dialog>
       </div>
       <% }) %> <% }else{ %>
       <h1 class="error-item-not-found"><%=errorMessage %></h1>
       <% } %>
     </main>
+
+    <script>
+      const dialog = document.querySelector("dialog");
+      const deleteBtn = document.querySelector(".delete-btn");
+      const yesBtn = document.querySelector(".yes-btn");
+      const noBtn = document.querySelector(".no-btn");
+
+      deleteBtn.addEventListener("click", (e) => {
+        dialog.showModal();
+      });
+      yesBtn.addEventListener("click", async (e) => {
+        try {
+          const response = await fetch(
+            "/inventory/item/delete/<%=bookData[0].id %>",
+            {
+              method: "delete",
+            }
+          );
+          if (response.status === 200) {
+            window.location.href = "/inventory/items";
+          }
+          console.log("response", response);
+        } catch (error) {
+          console.log("Error on deleting category item: " + err);
+        }
+
+        dialog.close();
+      });
+      noBtn.addEventListener("click", (e) => {
+        dialog.close();
+      });
+    </script>
   </body>
 </html>
