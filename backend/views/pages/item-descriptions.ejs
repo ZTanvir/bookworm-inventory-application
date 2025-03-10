@@ -74,7 +74,7 @@
       yesBtn.addEventListener("click", async (e) => {
         try {
           const response = await fetch(
-            "/inventory/item/delete/<%=bookData[0].id %>",
+            "/inventory/items/delete/<%=bookData[0].id %>",
             {
               method: "delete",
             }

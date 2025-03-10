@@ -208,3 +208,13 @@ exports.getSingleItem = async (req, res) => {
     });
   }
 };
+
+exports.deleteBook = async (req, res) => {
+  const bookId = req.params.id;
+  try {
+    await bookQuery.deleteBook(bookId);
+    res.sendStatus(200);
+  } catch (error) {
+    console.log("Error on deleting book:", error);
+  }
+};

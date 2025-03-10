@@ -31,4 +31,6 @@ bookViews.post(
 bookViews.get("/items", bookViewsController.getAllItems);
 bookViews.get("/items/:id", bookViewsController.getSingleItem);
 
+bookViews.delete("/items/delete/:id", bookViewsController.deleteBook);
+
 module.exports = bookViews;
