@@ -73,7 +73,6 @@
         dialog.showModal();
       });
       yesBtn.addEventListener("click", async (e) => {
-        console.log("Yes clicked");
         try {
           const response = await fetch(
             "/inventory/category/delete/<%=categoryDetails[0].id %>",
@@ -82,7 +81,7 @@
             }
           );
           if (response.status === 200) {
-            window.location.href = "/";
+            window.location.href = "/inventory/categories";
           }
           console.log("response", response);
         } catch (error) {
