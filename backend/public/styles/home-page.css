@@ -96,6 +96,9 @@
   font-weight: bolder;
   color: white;
 }
+:is(.add-item-link, .add-category-link) {
+  color: #333333;
+}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   .hero-section__title {
     font-size: 1.5rem;
